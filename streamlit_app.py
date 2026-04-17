@@ -142,8 +142,9 @@ else:
 st.sidebar.divider() 
 
 st.sidebar.markdown("""
-    <div style='text-align: center; color: gray; font-size: 0.8em;'>
-        <hr style='margin: 0 0 10px 0;'> 祝尼早日發家致富、盆滿缽滿(๑•̀ㅂ•́)و✧<br>
+    <div style='text-align: center; color: gray; font-size: 0.8em; margin-top: -10px;'>
+        祝尼早日發家致富、盆滿缽滿(๑•̀ㅂ•́)و✧<br>
         Developed by @鳳凰 時偃
-        <hr style='margin: 10px 0 10px 0;'> <p style='margin: 0;'>⚠️ 本工具尚不成熟，僅作輔助使用。</p> </div>
+        <hr style='margin: 10px 0 10px 0;'> <p style='margin: 0;'>⚠️ 本工具尚不成熟，僅作輔助使用。</p>
+    </div>
     """, unsafe_allow_html=True)
