@@ -72,7 +72,7 @@ with st.container(border=True):
     res_g1.metric("單個材料【時間成本】", f"{cost_per_unit:,.1f} G")
     res_g2.metric("這段時間的【產值損失】", f"{total_labor_val:,.0f} G")
 
-    st.info(f"結論：如果市場上的 **{g_item_name}** 單價低於 **{cost_per_unit:,.1f} G**，直接買會比你自己採集更賺。")
+    st.info(f"結論：如果板子上的 **{g_item_name}** 單價低於 **{cost_per_unit:,.1f} G**，直接板子買比較划算。")
     
     if st.button(f"將 {cost_per_unit:,.1f} G 套用到下方計算區", use_container_width=True):
         st.session_state.temp_mat_cost = cost_per_unit
@@ -137,3 +137,25 @@ if not st.session_state.history.empty:
     )
 else:
     st.info("目前還沒有紀錄。")
+    
+# --- 固定底欄設定 ---
+footer_html = """
+<style>
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #f0f2f6; /* 淡淡的灰色背景 */
+    color: #555;
+    text-align: center;
+    padding: 10px;
+    font-size: 12px;
+    z-index: 999;
+}
+</style>
+<div class="footer">
+    By <b>@鳳凰 時偃</b>
+</div>
+"""
+st.markdown(footer_html, unsafe_allow_html=True)
