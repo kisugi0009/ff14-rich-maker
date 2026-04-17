@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 from datetime import datetime
 
-st.set_page_config(page_title="FF14 發家致富計算機 V4", layout="wide")
+st.set_page_config(page_title="FF14 發家致富計算機", layout="wide")
 
 # --- 1. 初始化與檔案上傳 ---
 if 'history' not in st.session_state:
@@ -14,7 +14,7 @@ if 'history' not in st.session_state:
 if 'temp_mat_cost' not in st.session_state:
     st.session_state.temp_mat_cost = 20.0
 
-st.title("FF14 發家致富計算機 V4")
+st.title("FF14 發家致富計算機")
 
 # 在側邊欄加入上傳功能
 with st.sidebar:
@@ -32,18 +32,18 @@ with st.sidebar:
             st.error(f"讀取錯誤: {e}")
 
 # --- 2. 勞動成本評估區 (新增：決定要不要自己採集) ---
-st.header("⛏️ 勞動成本評估 (自己採集划算嗎？)")
+st.header("勞動成本評估")
 with st.container(border=True):
     col_gather, col_opp = st.columns(2)
     
     with col_gather:
-        st.subheader("🛠️ 採集數據")
+        st.subheader("採集數據")
         g_item_name = st.text_input("材料名稱", value="鐵礦")
         g_time = st.number_input("採集耗時 (分鐘)", min_value=1, value=30)
         g_yield = st.number_input("預計獲得數量", min_value=1, value=160)
         
     with col_opp:
-        st.subheader("💰 機會成本基準 (系統金)")
+        st.subheader("機會成本基準 (系統金)")
         # 整合你提供的系統金參考資料
         base_type = st.selectbox("選擇參考活動", [
             "隨機任務：練級 (約 2.4萬G / 20分)", 
