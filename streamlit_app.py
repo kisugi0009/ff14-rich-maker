@@ -138,24 +138,13 @@ if not st.session_state.history.empty:
 else:
     st.info("目前還沒有紀錄。")
     
-# --- 固定底欄設定 ---
-footer_html = """
-<style>
-.footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: #f0f2f6; /* 淡淡的灰色背景 */
-    color: #555;
-    text-align: center;
-    padding: 10px;
-    font-size: 12px;
-    z-index: 999;
-}
-</style>
-<div class="footer">
-    By <b>@鳳凰 時偃</b>
-</div>
-"""
-st.markdown(footer_html, unsafe_allow_html=True)
+# --- 側邊欄底部：製作者備註 ---
+st.sidebar.divider() # 加一條分割線
+st.sidebar.markdown("""
+    <div style='text-align: center; color: gray; font-size: 0.8em;'>
+        <p>祝你早日發家致富 賺的盆滿缽滿ˋˇˊ</p>
+        <p>Developed by: <b>@鳳凰 時偃</b></p>
+        <hr>
+        <p style='font-size: 0.7em;'>⚠️ 本工具尚不成熟，僅作輔助使用，切勿依賴。</p>
+    </div>
+    """, unsafe_allow_html=True)
