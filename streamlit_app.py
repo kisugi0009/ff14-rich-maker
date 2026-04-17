@@ -141,12 +141,9 @@ else:
 # --- 側邊欄底部：製作者備註 ---
 st.sidebar.divider() 
 
-# 使用單一 div 設定字體大小，讓所有文字統一
 st.sidebar.markdown("""
     <div style='text-align: center; color: gray; font-size: 0.8em;'>
-        祝尼早日發家致富、盆滿缽滿(๑•̀ㅂ•́)و✧<br>
+        <hr style='margin: 0 0 10px 0;'> 祝尼早日發家致富、盆滿缽滿(๑•̀ㅂ•́)و✧<br>
         Developed by @鳳凰 時偃
-        <hr style='margin: 10px 0;'>
-        <p style='color: #ffcc00;'>⚠️ 本工具尚不成熟，僅作輔助使用。</p>
-    </div>
+        <hr style='margin: 10px 0 10px 0;'> <p style='margin: 0;'>⚠️ 本工具尚不成熟，僅作輔助使用。</p> </div>
     """, unsafe_allow_html=True)
