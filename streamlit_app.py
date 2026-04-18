@@ -10,15 +10,15 @@ if 'history' not in st.session_state:
         "商品名稱", "預期售價", "單件純利", "總利潤", "時薪", "時間"
     ])
 
-# 用於連動採集成本的暫存狀態
+# 連動採集成本的暫存狀態
 if 'temp_mat_cost' not in st.session_state:
     st.session_state.temp_mat_cost = 20.0
 
 st.title("FF14 發家致富計算機")
 
-# 在側邊欄加入上傳功能
+# 側邊欄
 with st.sidebar:
-    st.header("📂 紀錄管理")
+    st.header("紀錄管理")
     uploaded_file = st.file_uploader("上傳之前的 CSV 紀錄", type=["csv"])
     if uploaded_file is not None:
         try:
@@ -31,7 +31,7 @@ with st.sidebar:
         except Exception as e:
             st.error(f"讀取錯誤: {e}")
 
-# --- 2. 勞動成本評估區 (直接自定義輸入版) ---
+# --- 2. 勞動成本評估區 ---
 st.header("勞動成本評估")
 with st.container(border=True):
     col_gather, col_opp = st.columns(2)
@@ -43,7 +43,7 @@ with st.container(border=True):
         g_yield = st.number_input("預計獲得數量", min_value=1, value=160)
         
     with col_opp:
-        st.subheader("機會成本基準 (系統金)")
+        st.subheader("機會成本基準 (其他收入來源)")
         b_income = st.number_input("基準活動收益 (Gil)", min_value=0, value=30000, help="例如：打一次隨機副本領到的總金額")
         b_min = st.number_input("基準活動耗時 (分鐘)", min_value=1, value=20, help="例如：打該活動花費的時間")
 
