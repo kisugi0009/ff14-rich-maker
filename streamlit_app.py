@@ -18,7 +18,7 @@ st.title("FF14 發家致富計算機")
 
 # 在側邊欄加入上傳功能
 with st.sidebar:
-    st.header("📂紀錄管理")
+    st.header("📂 紀錄管理")
     uploaded_file = st.file_uploader("上傳之前的 CSV 紀錄", type=["csv"])
     if uploaded_file is not None:
         try:
@@ -31,7 +31,7 @@ with st.sidebar:
         except Exception as e:
             st.error(f"讀取錯誤: {e}")
 
-# --- 2. 勞動成本評估區 (新增：決定要不要自己採集) ---
+# --- 2. 勞動成本評估區 (直接自定義輸入版) ---
 st.header("勞動成本評估")
 with st.container(border=True):
     col_gather, col_opp = st.columns(2)
@@ -44,23 +44,8 @@ with st.container(border=True):
         
     with col_opp:
         st.subheader("機會成本基準 (系統金)")
-        # 整合你提供的系統金參考資料
-        base_type = st.selectbox("選擇參考活動", [
-            "隨機任務：練級 (約 2.4萬G / 20分)", 
-            "100級理符搬運 (約 1.2萬G / 2分)", 
-            "潛水艇平均收益 (約 40萬G / 5分)",
-            "自定義"
-        ])
-        
-        if "練級" in base_type:
-            b_income, b_min = 24000, 20
-        elif "理符" in base_type:
-            b_income, b_min = 12000, 2
-        elif "潛水艇" in base_type:
-            b_income, b_min = 400000, 5
-        else:
-            b_income = st.number_input("基準收益 (Gil)", value=30000)
-            b_min = st.number_input("基準耗時 (分鐘)", value=20)
+        b_income = st.number_input("基準活動收益 (Gil)", min_value=0, value=30000, help="例如：打一次隨機副本領到的總金額")
+        b_min = st.number_input("基準活動耗時 (分鐘)", min_value=1, value=20, help="例如：打該活動花費的時間")
 
     # 計算單個材料的時間價值
     val_per_min = b_income / b_min
@@ -72,7 +57,7 @@ with st.container(border=True):
     res_g1.metric("單個材料【時間成本】", f"{cost_per_unit:,.1f} G")
     res_g2.metric("這段時間的【產值損失】", f"{total_labor_val:,.0f} G")
 
-    st.info(f"結論：如果板子上的 **{g_item_name}** 單價低於 **{cost_per_unit:,.1f} G**，直接板子買比較划算。")
+    st.info(f"💡如果板子上的 **{g_item_name}** 單價低於 **{cost_per_unit:,.1f} G**，直接板子買比較划算。")
     
     if st.button(f"將 {cost_per_unit:,.1f} G 套用到下方計算區", use_container_width=True):
         st.session_state.temp_mat_cost = cost_per_unit
@@ -87,7 +72,7 @@ with st.container(border=True):
         item_name = st.text_input("成品名稱", value="鐵錠")
         sell_price = st.number_input("預期售價 (單價)", min_value=0, value=800)
         batch_size = st.number_input("製作總量", min_value=1, value=99)
-        # 這裡會接收來自上方的連動數值
+        # 接收來自上方的連動數值
         mat_cost = st.number_input("材料成本 (單件)", min_value=0.0, value=float(st.session_state.temp_mat_cost))
         crys_cost = st.number_input("水晶成本 (單件)", min_value=0, value=30)
         time_per_item = st.number_input("製作單個秒數", min_value=1, value=3)
@@ -136,7 +121,7 @@ if not st.session_state.history.empty:
         mime="text/csv"
     )
 else:
-    st.info("目前還沒有紀錄。")
+    st.info("目前還沒有紀錄。你可以從左側上傳之前的 CSV，或是開始新的計算！")
     
 # --- 側邊欄底部：製作者備註 ---
 st.sidebar.divider() 
@@ -145,6 +130,7 @@ st.sidebar.markdown("""
     <div style='text-align: center; color: gray; font-size: 0.8em; margin-top: -10px;'>
         祝尼早日發家致富、盆滿缽滿(๑•̀ㅂ•́)و✧<br>
         Developed by @鳳凰 時偃
-        <hr style='margin: 10px 0 10px 0;'> <p style='margin: 0;'>⚠️ 本工具尚不成熟，僅作輔助使用。</p>
+        <hr style='margin: 10px 0 10px 0;'> 
+        <p style='margin: 0;'>⚠️ 本工具尚不成熟，僅作輔助使用。</p>
     </div>
     """, unsafe_allow_html=True)
