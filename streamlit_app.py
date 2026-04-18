@@ -123,7 +123,7 @@ if not st.session_state.history.empty:
 else:
     st.info("目前還沒有紀錄。你可以從左側上傳之前的 CSV，或是開始新的計算！")
     
-# --- 側邊欄底部：製作者備註 ---
+# --- 側邊欄底部 ---
 st.sidebar.divider() 
 
 st.sidebar.markdown("""
